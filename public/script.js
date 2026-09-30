@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // --- LÓGICA DE PRÉVIA DA CAPA ---
+  // --- LÓGICA DE PRÉVIA DA CAPA (PÁGINA DE CADASTRO) ---
   const campoCapa = document.getElementById('capa');
   const previaCapa = document.getElementById('previa-capa');
   const imagemCapa = document.getElementById('imagem-capa');
@@ -106,45 +106,82 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- LÓGICA DE LISTAGEM (GET) ---
+  // --- LÓGICA DE LISTAGEM E PESQUISA EM TEMPO REAL (GET + FILTER) ---
   const containerLivros = document.querySelector('.lista-livros');
+  const inputBusca = document.getElementById('book-search');
+  const botaoBusca = document.querySelector('.busca button');
 
   if (containerLivros) {
+    let todosOsLivros = [];
+
+    // Desenha os livros na página
+    function renderizarLivros(lista) {
+      if (lista.length === 0) {
+        containerLivros.innerHTML = '<p>Nenhum livro encontrado.</p>';
+        return;
+      }
+
+      containerLivros.innerHTML = lista.map(livro => {
+        const capaSrc = livro.capa ? livro.capa : 'https://via.placeholder.com/180x250?text=Sem+Capa';
+
+        return `
+          <article class="livro" data-id="${livro.id}">
+            <img src="${capaSrc}" alt="Capa de ${livro.titulo}" class="capa-livro" />
+            <h3 class="titulo-livro">${livro.titulo}</h3>
+            <p class="detalhes-livro"><strong>Autor:</strong> ${livro.autor}</p>
+            ${livro.categoria ? `<p class="detalhes-livro"><strong>Categoria:</strong> ${livro.categoria}</p>` : ''}
+            ${livro.editora ? `<p class="detalhes-livro"><strong>Editora:</strong> ${livro.editora}</p>` : ''}
+            ${livro.ano ? `<p class="detalhes-livro"><strong>Ano:</strong> ${livro.ano}</p>` : ''}
+            <p class="detalhes-livro"><strong>Exemplares:</strong> ${livro.estoque || 1}</p>
+            ${livro.descricao ? `<p class="descricao-rodape">${livro.descricao}</p>` : ''}
+            
+            <button class="botao-excluir" onclick="deletarLivro(${livro.id})">Excluir</button>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // Filtra no frontend por Título, Autor ou Categoria
+    function filtrarLivros() {
+      if (!inputBusca) return;
+      const termo = inputBusca.value.toLowerCase().trim();
+
+      const resultados = todosOsLivros.filter(livro => {
+        const titulo = livro.titulo ? livro.titulo.toLowerCase() : '';
+        const autor = livro.autor ? livro.autor.toLowerCase() : '';
+        const categoria = livro.categoria ? livro.categoria.toLowerCase() : '';
+
+        return titulo.includes(termo) || autor.includes(termo) || categoria.includes(termo);
+      });
+
+      renderizarLivros(resultados);
+    }
+
+    // Busca do banco via backend
     async function carregarLivros() {
       try {
         const resposta = await fetch(API_URL);
         if (!resposta.ok) throw new Error('Erro ao buscar livros');
 
-        const livros = await resposta.json();
-
-        if (livros.length === 0) {
-          containerLivros.innerHTML = '<p>Nenhum livro cadastrado no momento.</p>';
-          return;
-        }
-
-        containerLivros.innerHTML = livros.map(livro => {
-          const capaSrc = livro.capa ? livro.capa : 'https://via.placeholder.com/180x250?text=Sem+Capa';
-
-          return `
-            <article class="livro" data-id="${livro.id}">
-              <img src="${capaSrc}" alt="Capa de ${livro.titulo}" class="capa-livro" />
-              <h3 class="titulo-livro">${livro.titulo}</h3>
-              <p class="detalhes-livro"><strong>Autor:</strong> ${livro.autor}</p>
-              ${livro.categoria ? `<p class="detalhes-livro"><strong>Categoria:</strong> ${livro.categoria}</p>` : ''}
-              ${livro.editora ? `<p class="detalhes-livro"><strong>Editora:</strong> ${livro.editora}</p>` : ''}
-              ${livro.ano ? `<p class="detalhes-livro"><strong>Ano:</strong> ${livro.ano}</p>` : ''}
-              <p class="detalhes-livro"><strong>Exemplares:</strong> ${livro.estoque || 1}</p>
-              ${livro.descricao ? `<p class="descricao-rodape">${livro.descricao}</p>` : ''}
-              
-              <button class="botao-excluir" onclick="deletarLivro(${livro.id})">Excluir</button>
-            </article>
-          `;
-        }).join('');
+        todosOsLivros = await resposta.json();
+        renderizarLivros(todosOsLivros);
 
       } catch (erro) {
         console.error('Erro ao carregar livros:', erro);
         containerLivros.innerHTML = '<p>Erro ao conectar com a base de dados.</p>';
       }
+    }
+
+    // Eventos da barra de pesquisa
+    if (inputBusca) {
+      inputBusca.addEventListener('input', filtrarLivros);
+    }
+
+    if (botaoBusca) {
+      botaoBusca.addEventListener('click', (e) => {
+        e.preventDefault();
+        filtrarLivros();
+      });
     }
 
     carregarLivros();
