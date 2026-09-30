@@ -1,20 +1,19 @@
 ###Projeto Node.js
 
-Esse projeto foi feito com um amigo meu, é um servidor funcional com a DATABASE ja incluida,
-sobre uma biblioteca.
-Esta tudo rodando perfeitamente.
+### Node.js Project
 
+This project was built with some friends; it is a functional server with the DATABASE already included, designed for a library.
+Everything is running perfectly.
 
-Para clonar esse projeto. Após, descer em seu PC, 
-rode o seguinte comando para instalar as dependências
+To clone this project: after downloading it to your PC, run the following command to install the dependencies:
 
-npm init -y
+npm install
 
-E após, a instalação das dependências, digite o comando para iniciar o servidor:
+And after installing the dependencies, type the command to start the server:
 
 npx nodemon server.js
 
-Criadores:
+Team Members:
 @Augusto-Dev-stack (Back-end)
 @miguelMsantos2005 (Back-End)
 @joaosenai009-tech (Front-End)
