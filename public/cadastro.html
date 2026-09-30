@@ -64,6 +64,26 @@
           </div>
         </div>
 
+        <!-- CAMPO DE ANEXO DE CAPA -->
+        <div class="campo-formulario">
+          <label for="capa">Capa do livro</label>
+          <div class="area-capa">
+            <input class="arquivo-capa" type="file" id="capa" name="capa" accept="image/png, image/jpeg, image/webp"
+              aria-describedby="ajuda-capa" />
+            <p id="ajuda-capa">Escolha uma imagem JPG, PNG ou WebP.</p>
+
+            <div class="previa-capa" id="previa-capa" hidden>
+              <img id="imagem-capa" alt="Prévia da capa selecionada" />
+              <div>
+                <p id="nome-capa"></p>
+                <button class="botao-remover" id="remover-capa" type="button">
+                  Desanexar imagem
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="campo-formulario">
           <label for="description">Descrição</label>
           <textarea class="entrada-formulario" id="description" name="description" rows="4"
