@@ -1,6 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
   const API_URL = 'http://127.0.0.1:3030/livros';
 
+  // --- LÓGICA DE DELETAR LIVRO ---
+  window.deletarLivro = async function (id) {
+    const confirmacao = confirm('Tem certeza que deseja excluir este livro?');
+    if (!confirmacao) return;
+
+    try {
+      const resposta = await fetch(`${API_URL}/${id}`, {
+        method: 'DELETE'
+      });
+
+      if (resposta.ok) {
+        alert('Livro excluído com sucesso!');
+        const cartaoLivro = document.querySelector(`.livro[data-id="${id}"]`);
+        if (cartaoLivro) {
+          cartaoLivro.remove();
+        }
+      } else {
+        const erro = await resposta.json();
+        alert(`Erro ao excluir: ${erro.erro}`);
+      }
+    } catch (error) {
+      console.error('Erro ao conectar para excluir:', error);
+      alert('Falha ao conectar com o backend na porta 3030.');
+    }
+  };
+
   // --- LÓGICA DE PRÉVIA DA CAPA ---
   const campoCapa = document.getElementById('capa');
   const previaCapa = document.getElementById('previa-capa');
@@ -37,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
     formCadastro.addEventListener('submit', async (event) => {
       event.preventDefault();
 
-      // Converter o ficheiro de imagem em string Base64 se selecionado
       let capaBase64 = null;
       const arquivoCapa = campoCapa?.files[0];
 
@@ -98,7 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         containerLivros.innerHTML = livros.map(livro => {
-          // Imagem enviada ou placeholder genérico caso não tenha capa
           const capaSrc = livro.capa ? livro.capa : 'https://via.placeholder.com/180x250?text=Sem+Capa';
 
           return `
@@ -111,6 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
               ${livro.ano ? `<p class="detalhes-livro"><strong>Ano:</strong> ${livro.ano}</p>` : ''}
               <p class="detalhes-livro"><strong>Exemplares:</strong> ${livro.estoque || 1}</p>
               ${livro.descricao ? `<p class="descricao-rodape">${livro.descricao}</p>` : ''}
+              
+              <button class="botao-excluir" onclick="deletarLivro(${livro.id})">Excluir</button>
             </article>
           `;
         }).join('');

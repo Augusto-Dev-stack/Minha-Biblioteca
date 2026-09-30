@@ -178,7 +178,6 @@ main {
     background-color: var(--branco);
 }
 
-/* ESTILO DA CAPA EXIBIDA NOS CARTOES */
 .capa-livro {
     width: 100%;
     height: 260px;
@@ -207,6 +206,25 @@ main {
     margin-top: 0.4rem;
 }
 
+/* BOTÃO DE EXCLUIR */
+.botao-excluir {
+    margin-top: 0.8rem;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--vermelho-principal);
+    border-radius: 4px;
+    background-color: transparent;
+    color: var(--vermelho-principal);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.botao-excluir:hover {
+    background-color: var(--vermelho-principal);
+    color: var(--branco);
+}
+
 .oculto-visualmente {
     position: absolute;
     width: 1px;
@@ -217,7 +235,7 @@ main {
     clip-path: inset(50%);
 }
 
-/* ESTILOS DO FORMULÁRIO E PRÉVIA */
+/* FORMULÁRIO E PRÉVIA */
 .formulario {
     width: min(100%, 720px);
     margin: 0 auto;

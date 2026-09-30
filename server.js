@@ -4,7 +4,7 @@ import { Sequelize, DataTypes } from 'sequelize';
 
 const app = express();
 
-// Middlewares - Limite de 50mb habilitado para receber as imagens em Base64
+// Middlewares
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
@@ -16,7 +16,7 @@ const sequelize = new Sequelize({
     logging: false
 });
 
-// Modelo do Livro com o campo capa (DataTypes.TEXT suporta strings longas em Base64)
+// Modelo do Livro
 const Livro = sequelize.define('Livro', {
     titulo: { type: DataTypes.STRING, allowNull: false },
     autor: { type: DataTypes.STRING, allowNull: false },
@@ -24,14 +24,14 @@ const Livro = sequelize.define('Livro', {
     categoria: DataTypes.STRING,
     ano: DataTypes.INTEGER,
     estoque: { type: DataTypes.INTEGER, defaultValue: 1 },
-    capa: DataTypes.TEXT, // Armazena a imagem codificada em Base64
+    capa: DataTypes.TEXT,
     descricao: DataTypes.TEXT,
     preco: { type: DataTypes.FLOAT, defaultValue: 0 }
 });
 
 // Rota de Teste
 app.get('/', (req, res) => {
-    res.send('Backend Express a rodar na porta 3030 com suporte a capas!');
+    res.send('Backend Express rodando na porta 3030!');
 });
 
 // Rota GET: Listar todos os livros
@@ -45,7 +45,7 @@ app.get('/livros', async (req, res) => {
     }
 });
 
-// Rota POST: Cadastrar novo livro com capa
+// Rota POST: Cadastrar novo livro
 app.post('/livros', async (req, res) => {
     try {
         const novoLivro = await Livro.create(req.body);
@@ -56,7 +56,25 @@ app.post('/livros', async (req, res) => {
     }
 });
 
-// Iniciar o Servidor na porta 3030
+// Rota DELETE: Excluir livro pelo ID
+app.delete('/livros/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const livro = await Livro.findByPk(id);
+
+        if (!livro) {
+            return res.status(404).json({ erro: 'Livro não encontrado.' });
+        }
+
+        await livro.destroy();
+        res.status(200).json({ mensagem: 'Livro excluído com sucesso!' });
+    } catch (error) {
+        console.error('Erro ao excluir livro:', error);
+        res.status(500).json({ erro: 'Erro ao excluir livro da base de dados.' });
+    }
+});
+
+// Iniciar o Servidor
 const PORTA = 3030;
 sequelize.sync({ alter: true }).then(() => {
     app.listen(PORTA, '127.0.0.1', () => {
