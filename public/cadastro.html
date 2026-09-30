@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastrar livro | SESI Biblioteca</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <div class="conteudo-cabecalho">
+      <a class="marca" href="index.html" aria-label="SESI Biblioteca, início">
+        <img src="sesi.png" alt="Logótipo SESI" class="imagem-logo" />
+        <span>SESI <span class="separador-marca">|</span> Biblioteca</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="formulario">
+      <a class="botao-voltar" href="index.html">
+        <span aria-hidden="true">&larr;</span> Página inicial
+      </a>
+      <h1>Cadastrar novo livro</h1>
+
+      <form>
+        <div class="campo-formulario">
+          <label for="title">Título do livro</label>
+          <input class="entrada-formulario" type="text" id="title" name="title" placeholder="Digite o título"
+            required />
+        </div>
+
+        <div class="campo-formulario">
+          <label for="author">Autor principal</label>
+          <input class="entrada-formulario" type="text" id="author" name="author" placeholder="Nome do autor"
+            required />
+        </div>
+
+        <div class="linha-campos">
+          <div class="campo-formulario">
+            <label for="publisher">Editora</label>
+            <input class="entrada-formulario" type="text" id="publisher" name="publisher"
+              placeholder="Nome da editora" />
+          </div>
+          <div class="campo-formulario">
+            <label for="genre">Categoria ou gênero</label>
+            <input class="entrada-formulario" type="text" id="genre" name="genre" placeholder="Ex.: Literatura"
+              required />
+          </div>
+        </div>
+
+        <div class="linha-campos">
+          <div class="campo-formulario">
+            <label for="year">Ano de publicação</label>
+            <input class="entrada-formulario" type="number" id="year" name="year" min="1000" max="2099"
+              placeholder="Ex.: 2026" required />
+          </div>
+          <div class="campo-formulario">
+            <label for="quantity">Exemplares disponíveis</label>
+            <input class="entrada-formulario" type="number" id="quantity" name="quantity" min="1" value="1" required />
+          </div>
+        </div>
+
+        <div class="campo-formulario">
+          <label for="description">Descrição</label>
+          <textarea class="entrada-formulario" id="description" name="description" rows="4"
+            placeholder="Informações adicionais sobre o livro"></textarea>
+        </div>
+
+        <button class="botao-principal" type="submit">Cadastrar livro</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="conteudo-rodape">
+      <p class="creditos-rodape">© 2026 Biblioteca Escolar SESI. Todos os direitos reservados.</p>
+      <p class="descricao-rodape">Um espaço escolar para leitura, pesquisa e aprendizagem.</p>
+    </div>
+  </footer>
+</body>
+
+</html>

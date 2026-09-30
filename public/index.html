@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biblioteca Escolar SESI</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <div class="conteudo-cabecalho">
+      <a class="marca" href="#inicio" aria-label="SESI Biblioteca, início">
+        <img src="sesi.png" alt="Logótipo SESI" class="imagem-logo" />
+        <span>SESI <span class="separador-marca">|</span> Biblioteca</span>
+      </a>
+
+      <div class="busca" role="search">
+        <label class="oculto-visualmente" for="book-search">Buscar livros</label>
+        <input class="campo-busca" id="book-search" name="q" type="search" placeholder="Buscar por título ou autor" />
+        <button class="botao-principal" type="button">Buscar</button>
+      </div>
+
+      <div class="acoes-cabecalho">
+        <a class="botao-menu" href="cadastro.html">Cadastrar livro</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="destaque" id="inicio" aria-labelledby="inicio-titulo">
+      <div class="conteudo-destaque">
+        <p class="selo-destaque">Biblioteca Escolar SESI</p>
+        <h1 id="inicio-titulo">Um espaço para aprender, imaginar e descobrir.</h1>
+        <p>
+          Um lugar de leitura, pesquisa e novas ideias para estudantes e toda
+          a comunidade escolar.
+        </p>
+        <div class="acoes-destaque">
+          <a class="botao-principal" href="#livros">Explorar livros</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="livros" aria-labelledby="livros-titulo">
+      <h2 id="livros-titulo">Livros da biblioteca</h2>
+
+      <!-- Os cartões de livros são inseridos aqui dinamicamente pelo script.js -->
+      <div class="lista-livros"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="conteudo-rodape">
+      <p class="creditos-rodape">© 2026 Biblioteca Escolar SESI. Todos os direitos reservados.</p>
+      <p class="descricao-rodape">Um espaço escolar para leitura, pesquisa e aprendizagem.</p>
+    </div>
+  </footer>
+</body>
+
+</html>

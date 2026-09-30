@@ -1,0 +1,10 @@
+:root {
+    --vermelho-principal: #ED1C24; /*Botões principais, logo, destaques*/
+    --vermelho-escuro: #B0000D; /*Hover, títulos especiais, detalhes*/
+    --preto: #000000; /*Textos, elementos de interface*/
+    --branco: #ffffff; /*Fundo principal, cards*/
+    --cinza-claro: #F3F4F6; /*Fundo de seções e áreas de pesquisa */
+    --cinza-medio: #6B7280; /*Textos secundários e descrições*/
+    --azul-complementar: #1565C0; /*Links, informações e categorias*/
+    --amarelo-destaque: #F5C400; /*Avisos, etiquetas e pequenos destaques*/
+}

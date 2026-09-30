@@ -5,8 +5,30 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
   try {
-    const { id, titulo, autor, preco, estoque } = req.body;
-    const novoLivro = await Livro.create({ id, titulo, autor, preco, estoque });
+    const {
+      titulo,
+      autor,
+      editora,
+      categoria,
+      ano,
+      preco,
+      estoque,
+      capa,
+      descricao
+    } = req.body;
+
+    const novoLivro = await Livro.create({
+      titulo,
+      autor,
+      editora,
+      categoria,
+      ano: ano ? parseInt(ano) : null,
+      preco: preco || 0,
+      estoque: estoque || 1,
+      capa,
+      descricao
+    });
+
     res.status(201).json(novoLivro);
   } catch (error) {
     res.status(400).json({ erro: 'Não foi possível cadastrar o livro', detalhe: error.message });
