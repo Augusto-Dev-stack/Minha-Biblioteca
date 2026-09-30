@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | SESI Biblioteca</title>
+  <link rel="icon" type="image/png" href="sesi.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <header>
+    <div class="conteudo-cabecalho">
+      <a class="marca" href="index.html">
+        <img src="sesi.png" alt="Logo SESI" class="imagem-logo" />
+        <span>SESI <span class="separador-marca">|</span> Biblioteca</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="formulario">
+      <a class="botao-voltar" href="index.html">
+        <span aria-hidden="true">&larr;</span> Página inicial
+      </a>
+
+      <h1>Login do aluno</h1>
+      <p>Digite o seu e-mail e senha para entrar na biblioteca.</p>
+      <br>
+      <form id="form-login-unico">
+        <div class="campo-formulario">
+          <label for="email-login">E-mail</label>
+          <input class="entrada-formulario" type="email" id="email-login" name="email-login"
+            placeholder="Digite o seu e-mail" required />
+        </div>
+
+        <div class="campo-formulario">
+          <label for="senha-login">Senha</label>
+          <input class="entrada-formulario" type="password" id="senha-login" name="senha-login"
+            placeholder="Digite a sua senha" required />
+        </div>
+
+        <button class="botao-principal" type="submit">Entrar</button>
+      </form>
+      <p class="texto-auxiliar" style="margin-top: 15px;">
+        Não tem conta? <a href="cadastro-aluno.html">Cadastre-se</a>
+      </p>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro aluno | SESI Biblioteca</title>
+  <link rel="icon" type="image/png" href="sesi.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <header>
+    <div class="conteudo-cabecalho">
+      <a class="marca" href="index.html">
+        <img src="sesi.png" alt="Logo SESI" class="imagem-logo" />
+        <span>SESI <span class="separador-marca">|</span> Biblioteca</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="formulario">
+      <a class="botao-voltar" href="index.html">
+        <span aria-hidden="true">&larr;</span> Página inicial
+      </a>
+
+      <h1>Cadastro de aluno</h1>
+
+      <div class="cadastro-usuario">
+        <form>
+          <div class="campo-formulario">
+            <label for="nome-aluno-cadastro">Nome completo</label>
+            <input class="entrada-formulario" type="text" id="nome-aluno-cadastro" name="nome-aluno-cadastro"
+              placeholder="Digite seu nome completo" required />
+          </div>
+
+          <div class="linha-campos">
+            <div class="campo-formulario">
+              <label for="matricula-aluno-cadastro">Matrícula</label>
+              <input class="entrada-formulario" type="text" id="matricula-aluno-cadastro"
+                name="matricula-aluno-cadastro" placeholder="Digite a matrícula" required />
+            </div>
+            <div class="campo-formulario">
+              <label for="turma-aluno-cadastro">Turma</label>
+              <input class="entrada-formulario" type="text" id="turma-aluno-cadastro" name="turma-aluno-cadastro"
+                placeholder="Ex.: 1A" required />
+            </div>
+          </div>
+
+          <div class="linha-campos">
+            <div class="campo-formulario">
+              <label for="email-aluno-cadastro">E-mail</label>
+              <input class="entrada-formulario" type="email" id="email-aluno-cadastro" name="email-aluno-cadastro"
+                placeholder="seuemail@escola.com" required />
+            </div>
+            <div class="campo-formulario">
+              <label for="telefone-aluno-cadastro">Telefone</label>
+              <input class="entrada-formulario" type="tel" id="telefone-aluno-cadastro" name="telefone-aluno-cadastro"
+                placeholder="(00) 00000-0000" />
+            </div>
+          </div>
+
+          <div class="linha-campos">
+            <div class="campo-formulario">
+              <label for="senha-aluno-cadastro">Senha</label>
+              <input class="entrada-formulario" type="password" id="senha-aluno-cadastro" name="senha-aluno-cadastro"
+                placeholder="Crie sua senha" required />
+            </div>
+            <div class="campo-formulario">
+              <label for="confirmar-senha-aluno-cadastro">Confirmar senha</label>
+              <input class="entrada-formulario" type="password" id="confirmar-senha-aluno-cadastro"
+                name="confirmar-senha-aluno-cadastro" placeholder="Repita a senha" required />
+            </div>
+          </div>
+
+          <button class="botao-principal" type="submit">Cadastrar aluno</button>
+        </form>
+
+        <p class="texto-auxiliar" style="margin-top: 15px;">
+          Já tem conta? <a href="login.html">Faça login</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+
+</html>

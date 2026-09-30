@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login professor | SESI Biblioteca</title>
+  <link rel="icon" type="image/png" href="sesi.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <header>
+    <div class="conteudo-cabecalho">
+      <a class="marca" href="index.html">
+        <img src="sesi.png" alt="Logo SESI" class="imagem-logo" />
+        <span>SESI <span class="separador-marca">|</span> Biblioteca</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="formulario">
+      <a class="botao-voltar" href="index.html">
+        <span aria-hidden="true">&larr;</span> Página inicial
+      </a>
+      <h1>Login de professor / Admin</h1>
+
+      <form>
+        <div class="campo-formulario">
+          <label for="senha-login-professor">Senha de acesso</label>
+          <input class="entrada-formulario" type="password" id="senha-login-professor" name="senha-login-professor"
+            placeholder="Digite a senha de instrutor" required />
+        </div>
+
+        <button class="botao-principal" type="submit">Entrar</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+
+</html>
